@@ -33,5 +33,9 @@ public class KhetiBookDao {
 	public Farmer saveFarmer(Farmer farmer) {
 		return farmerRepository.save(farmer);
 	}
+	
+	public Farmer getFarmer(long phoneNo) {
+		return farmerRepository.findByFarmerPhoneNo(phoneNo);
+	}
 
 }

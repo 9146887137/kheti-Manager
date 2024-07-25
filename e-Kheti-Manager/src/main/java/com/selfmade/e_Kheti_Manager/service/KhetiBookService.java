@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.selfmade.e_Kheti_Manager.dao.KhetiBookDao;
 import com.selfmade.e_Kheti_Manager.entity.Farmer;
+import com.selfmade.e_Kheti_Manager.exception.FarmerNotFoundException;
+import com.selfmade.e_Kheti_Manager.exception.InvalidPasswordException;
 import com.selfmade.e_Kheti_Manager.util.ResponseStructure;
 
 @Service
@@ -26,6 +28,21 @@ public class KhetiBookService {
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setData(dbFarmer);
 		return new ResponseEntity<ResponseStructure<Farmer>>(structure,HttpStatus.OK);
+	}
+	
+	public ResponseEntity<ResponseStructure<Farmer>> getFarmer(long phoneNo,String password) {
+		Farmer farmer=khetiBookDao.getFarmer(phoneNo);
+		if(farmer!=null) {
+			if(passwordEncoder.matches(password, farmer.getPassword())) {
+				ResponseStructure<Farmer> structure=new ResponseStructure<Farmer>();
+				structure.setMessage("farmer fetched...!");
+				structure.setStatus(HttpStatus.FOUND.value());
+				structure.setData(farmer);
+				return new ResponseEntity<ResponseStructure<Farmer>>(structure, HttpStatus.FOUND);
+			}
+			throw new InvalidPasswordException("Invalid password ! please enter correct password..!");
+		}
+		throw new FarmerNotFoundException("farmer not exist with given details..!");
 	}
 	
 

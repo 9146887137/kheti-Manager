@@ -6,4 +6,5 @@ import com.selfmade.e_Kheti_Manager.entity.Farmer;
 
 public interface FarmerRepository extends JpaRepository<Farmer, Integer>{
 
+	public Farmer findByFarmerPhoneNo(long farmerPhoneNo);
 }
