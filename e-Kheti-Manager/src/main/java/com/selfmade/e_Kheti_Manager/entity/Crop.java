@@ -3,7 +3,6 @@ package com.selfmade.e_Kheti_Manager.entity;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,22 +12,17 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Farmer {
+public class Crop {
 	
-	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int farmerId;
-	private String farmerName;
-	@Column(unique = true)
-	private long farmerPhoneNo;
-	@Column(unique = true)
-	private long farmerAdharNo;
-	private int farmerAge;
-	private String farmerAddress;
-	private String password;
-	
+	@Id  
+	private int cropId;
+	private String cropName;
+	private String season;
+	private double contentsInkg;
+	private String cropType;
+	private double totalExpenses;
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Land> lands;
-	
+	private List<CropActivity> cropActivities;
 
 }

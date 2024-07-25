@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.selfmade</groupId>
-	<artifactId>e-Kheti-Manager</artifactId>
+	<artifactId>e_Kheti_Manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>e-Kheti-Manager</name>
 	<description>Demo project for Spring Boot</description>
@@ -69,10 +69,13 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-security</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+	</dependency>
 	</dependencies>
 
 	<build>
